@@ -1,6 +1,6 @@
 import 'models.dart';
 
-class Library{
+class Library {
   final List<LibraryItem> items = [];
 
   late final DateTime openedAt;
@@ -40,14 +40,16 @@ class Library{
   ///    elements (Book), but we need to accumulate an `int` (the sum of pages).
   /// 2. `reduce` throws a StateError on empty collections, whereas `fold` safely
   ///    returns the initial value.
-  double get averagePageCount => items.whereType<Book>().fold<int>(
-      0, (sum, book) => sum + book.pages
-  ) / (items.whereType<Book>().isEmpty ? 1 : items.whereType<Book>().length);
+  double get averagePageCount =>
+      items.whereType<Book>().fold<int>(0, (sum, book) => sum + book.pages) /
+      (items.whereType<Book>().isEmpty ? 1 : items.whereType<Book>().length);
 
-  Map<String, int> get booksPerAuthor => items.whereType<Book>().fold<Map<String, int>>(
-      <String, int>{},
-          (map, book) => map..update(book.author.name, (count) => count + 1, ifAbsent: () => 1)
-  );
+  Map<String, int> get booksPerAuthor =>
+      items.whereType<Book>().fold<Map<String, int>>(
+        <String, int>{},
+        (map, book) => map
+          ..update(book.author.name, (count) => count + 1, ifAbsent: () => 1),
+      );
 
   Set<String> get distinctAuthors =>
       items.whereType<Book>().map((book) => book.author.name).toSet();
@@ -58,8 +60,7 @@ class Library{
   List<String> get displayList => [
     'CATALOGUE',
 
-    for (final book in items.whereType<Book>())
-      '${book.title} (${book.year})',
+    for (final book in items.whereType<Book>()) '${book.title} (${book.year})',
 
     ...distinctAuthors,
 
@@ -67,4 +68,3 @@ class Library{
       '(incomplete data)',
   ];
 }
-

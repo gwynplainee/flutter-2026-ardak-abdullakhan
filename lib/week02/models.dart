@@ -1,11 +1,8 @@
-class Author{
+class Author {
   final String name;
   final String? country;
 
-  Author({
-    required this.name,
-    this.country
-  });
+  Author({required this.name, this.country});
 
   @override
   String toString() => 'Author(name: $name, country: $country)';
@@ -38,14 +35,11 @@ abstract class LibraryItem {
   final String title;
   final int year;
 
-  const LibraryItem({
-    required this.title,
-    required this.year,
-  });
+  const LibraryItem({required this.title, required this.year});
 
   String describe();
 
-  bool get isOld => year < 2000;
+  bool get isOld => year < 2006;
 }
 
 mixin Borrowable on LibraryItem {
@@ -76,10 +70,7 @@ class Book extends LibraryItem with Borrowable {
     final authorName = json['author'] as String? ?? 'Unknown Author';
     final authorCountry = json['country'] as String?;
 
-    final author = Author(
-      name: authorName,
-      country: authorCountry,
-    );
+    final author = Author(name: authorName, country: authorCountry);
 
     return Book(
       title: json['title'] as String? ?? 'Untitled',
@@ -136,10 +127,7 @@ class Ghost implements LibraryItem {
   @override
   final int year;
 
-  const Ghost({
-    required this.title,
-    required this.year,
-  });
+  const Ghost({required this.title, required this.year});
 
   @override
   String describe() => 'A ghost item named "$title"';

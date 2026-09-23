@@ -3,7 +3,7 @@ import 'catalogue.dart';
 import 'shelf_state.dart';
 import 'data.dart';
 
-void main(){
+void main() {
   final library = Library();
   library.open();
 
@@ -18,7 +18,9 @@ void main(){
   print('Average Page Count: ${library.averagePageCount.toStringAsFixed(1)}');
   print('Books Per Author: ${library.booksPerAuthor}');
   print('Distinct Authors: ${library.distinctAuthors}');
-  print('Present Genres: ${library.presentGenres.map((g) => g.label).join(', ')}');
+  print(
+    'Present Genres: ${library.presentGenres.map((g) => g.label).join(', ')}',
+  );
   print('Country of Refactoring: ${library.countryOf('Refactoring')}');
   print('Country of Missing Book: ${library.countryOf('Not Real')}');
 
@@ -27,7 +29,9 @@ void main(){
 
   print('\n--- RECORD STATS ---');
   final stats = statsOf(parsedBooks);
-  print('Stats Record: Count = ${stats.count}, Avg Pages = ${stats.avgPages.toStringAsFixed(1)}');
+  print(
+    'Stats Record: Count = ${stats.count}, Avg Pages = ${stats.avgPages.toStringAsFixed(1)}',
+  );
 
   print('\n--- SHELF STATES (SEALED) ---');
   final stateEmpty = Empty();

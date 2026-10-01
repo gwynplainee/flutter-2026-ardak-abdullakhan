@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2026_project/data.dart';
 
-import 'profile_header.dart';
-import 'info_row.dart';
+import 'stopwatch_card.dart';
+import 'tap_card.dart';
+import 'two_way_counter.dart';
 
-void main() {
-  runApp(const ProfileApp());
-}
+void main() => runApp(const MyApp());
 
-class ProfileApp extends StatelessWidget {
-  const ProfileApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('My profile', style: TextStyle(fontFamily: 'Inter'))),
-        body: Column(
-          children: [
-            const ProfileHeader(name: myName, university: myUniversity),
-            ...[
-              for (final fact in facts)
-                InfoRow(label: fact.label, value: fact.value),
-            ],
-          ],
-        ),
+  Widget build(BuildContext context) => const MaterialApp(home: HomeScreen());
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: const Text('A screen that reacts')),
+    body: const Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          TapCard(),
+          SizedBox(height: 16),
+          TwoWayCounter(),
+          SizedBox(height: 16),
+          StopwatchCard(),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }

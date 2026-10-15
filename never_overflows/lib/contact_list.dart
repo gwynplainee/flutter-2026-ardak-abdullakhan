@@ -18,7 +18,7 @@ class ContactList extends StatelessWidget {
           child: Text(
             '${contacts.length} contacts',
             style: theme.textTheme.titleSmall?.copyWith(
-              color: theme.colorScheme.primary, // polish
+              color: theme.colorScheme.primary,
             ),
           ),
         ),

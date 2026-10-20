@@ -17,7 +17,7 @@ class _EditScreenState extends State<EditScreen> {
   bool get _dirty => _name != widget.student.name;
 
   Future<void> _onPopInvoked(bool didPop, Object? result) async {
-    if (didPop) return; // the pop already happened — nothing to do
+    if (didPop) return; // the pop already happened - nothing to do
 
     final discard = await showDialog<bool>(
       context: context,

@@ -12,13 +12,16 @@ class UsersModel extends ChangeNotifier {
   List<User> items = const [];
   ApiException? error;
   bool loading = false;
+  bool fromCache = false;
 
   Future<void> load() async {
     loading = true;
     error = null;
     notifyListeners();
     try {
-      items = await _repo.getAll();
+      final result = await _repo.getAll();
+      items = result.items;
+      fromCache = result.fromCache;
     } on ApiException catch (e) {
       error = e;
     } finally {
@@ -27,9 +30,10 @@ class UsersModel extends ChangeNotifier {
     }
   }
 
+  /// the form decides what to show.
   Future<void> add(User draft) async {
     final created = await _repo.create(draft);
-    items = [created, ...items];
+    items = [created, ...items]; // the server's id, at the top
     notifyListeners();
   }
 }

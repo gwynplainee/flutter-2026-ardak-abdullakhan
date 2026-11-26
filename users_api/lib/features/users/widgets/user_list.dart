@@ -10,7 +10,19 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (users.isEmpty) {
+      return ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(child: Text('No users in this city')),
+          ),
+        ],
+      );
+    }
     return ListView.separated(
+      // must always scroll, otherwise pull-to-refresh does not work
       physics: const AlwaysScrollableScrollPhysics(),
       itemCount: users.length,
       separatorBuilder: (_, __) => const Divider(height: 1),

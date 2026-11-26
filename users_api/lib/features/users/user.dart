@@ -58,7 +58,6 @@ class User {
     required this.company,
   });
 
-
   factory User.fromJson(Map<String, dynamic> json) {
     final company = json['company'] as Map<String, dynamic>;
     return User(
